@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CryptLab2
 {
@@ -179,7 +180,6 @@ namespace CryptLab2
             }
         }
 
-
         static char XOR(char a, char b)
         {
             char result;
@@ -228,6 +228,33 @@ namespace CryptLab2
                 N++;
             }
             return L;
+        }
+
+        public static void NIST(byte[] str)
+        {
+            int sum = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == 0)
+                {
+                    sum -= 1;
+                }
+                if (str[i] == 1)
+                {
+                    sum += 1;
+                }
+            }
+            double S = Math.Abs(sum) / Math.Sqrt(str.Length);
+            Console.WriteLine($"Sum = {(Math.Abs(sum))}");
+
+            if (Math.Abs(sum) == 1 || Math.Abs(sum) == 0)
+            {
+                Console.WriteLine("Первый постулат выполняется.\r\n");
+            }
+            else
+            {
+                Console.WriteLine("Первый постулат не выполняется.\r\n");
+            }
         }
     }
 }
